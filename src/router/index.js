@@ -12,9 +12,10 @@ const routes = [
     component: TimeLine,
   },
   {
-    path: "/event",
+    path: "/event/:id",
     name: "EventDetail",
     component: EventDetail,
+    props: true,
   },
 ];
 

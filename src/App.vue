@@ -5,6 +5,12 @@
 </template>
 
 <script>
+import Vue from "vue";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+library.add(fas);
+Vue.component("font-awesome-icon", FontAwesomeIcon);
 export default {
   data() {
     return {
@@ -131,5 +137,14 @@ export default {
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+
+  .title {
+  color: gray;
+  border-bottom: 2px solid rgb(194, 104, 194);
+  border-left: 5px solid rgb(194, 104, 194);
+  width: 120px;
+  margin: 10px;
+  padding: 0 0 2px 2px;
   }
 </style>

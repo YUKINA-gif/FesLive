@@ -1,46 +1,44 @@
 <template>
   <div class="swipe">
-    <carousel
-    :per-page="4">
-      <slide v-for="image in images" :key="image.id">
-        <img :src="image.image" alt="イベント画像" class="image swipe_image">
+    <carousel :per-page="5">
+      <slide v-for="event in events" :key="event.id">
+        <img
+          :src="event.image"
+          alt="イベント画像"
+          class="image swipe_image"
+          @click="
+            $router.push({
+              path: '/event/' + event.id,
+              params: { id: event.id },
+            })
+          "
+        />
       </slide>
     </carousel>
   </div>
 </template>
 
 <script>
-import { Carousel, Slide } from 'vue-carousel';
+import { Carousel, Slide } from "vue-carousel";
 export default {
+  props: ["events"],
   data() {
-    return {
-      images:[
-        {id:1,image:"favicon.ico"},
-        {id:2,image:"favicon.ico"},
-        {id:3,image:"favicon.ico"},
-        {id:4,image:"favicon.ico"},
-        {id:5,image:"favicon.ico"},
-        {id:6,image:"favicon.ico"},
-        {id:7,image:"favicon.ico"},
-        {id:8,image:"favicon.ico"},
-      ],
-    }
+    return {};
   },
   components: {
     Carousel,
-    Slide
-  }
-}
+    Slide,
+  },
+};
 </script>
 
 <style scoped>
-.swipe_image{
-  width: 90px;
+.swipe_image {
+  width: 70px;
   border: 1px solid #ccc;
   border-radius: 50px;
 }
-.flex{
+.flex {
   flex-shrink: 0;
 }
-
 </style>
