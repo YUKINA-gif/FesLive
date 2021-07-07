@@ -25,7 +25,7 @@
     <h2 class="title">アクセス</h2>
     <p class="data">{{ event.address }}</p>
 
-    <button @click="$router.push('/')">戻る</button>
+    <button class="button" @click="$router.push('/')">戻る</button>
   </div>
 </template>
 
@@ -78,10 +78,22 @@ export default {
 </script>
 
 <style scoped>
+/* ===============
+   イベント詳細
+=============== */
 .data {
   padding: 0 20px;
 }
 .image {
   width: 100%;
+}
+.button {
+  margin: 10px 0 10px 50%;
+  color: #fff;
+  background-color: rgb(194, 104, 194);
+  border: 1px solid rgb(194, 104, 194);
+  padding: 5px 10px;
+  transform: translate(-50%, 0);
+  cursor: pointer;
 }
 </style>
