@@ -33,6 +33,9 @@ export default {
 </script>
 
 <style scoped>
+/* ===============
+   イベント一覧
+=============== */
 .swipe_image {
   width: 70px;
   border: 1px solid #ccc;
