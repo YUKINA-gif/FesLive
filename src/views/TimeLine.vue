@@ -73,6 +73,11 @@ export default {
 /* ===============
       メイン
 =============== */
+
+/* =====================
+      レスポンシブ
+====================== */
+@media screen and (max-width: 768px) {
 .main_title {
   position: absolute;
   top: 30px;
@@ -109,5 +114,6 @@ export default {
 }
 .tweet_text {
   padding: 5px;
+}
 }
 </style>
