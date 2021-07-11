@@ -1,7 +1,12 @@
 <template>
   <div class="swipe">
     <carousel :per-page="5">
-      <slide v-for="event in events" :key="event.id">
+      <slide
+        v-for="event in events"
+        :key="event.id"
+        :autoplay="autoplay"
+        :loop="loop"
+      >
         <img
           :src="event.image"
           alt="イベント画像"
@@ -23,7 +28,10 @@ import { Carousel, Slide } from "vue-carousel";
 export default {
   props: ["events"],
   data() {
-    return {};
+    return {
+      autoplay: true,
+      loop: true,
+    };
   },
   components: {
     Carousel,
@@ -36,12 +44,19 @@ export default {
 /* ===============
    イベント一覧
 =============== */
-.swipe_image {
-  width: 70px;
-  border: 1px solid #ccc;
-  border-radius: 50px;
-}
-.flex {
-  flex-shrink: 0;
+
+/* =====================
+      レスポンシブ
+====================== */
+@media screen and (max-width: 768px) {
+  .swipe_image {
+    width: 70px;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    cursor: pointer;
+  }
+  .flex {
+    flex-shrink: 0;
+  }
 }
 </style>

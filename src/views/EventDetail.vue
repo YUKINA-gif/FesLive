@@ -1,36 +1,74 @@
 <template>
   <div class="detail">
-    <img :src="event.image" alt="イベントイメージ画像" class="image" />
-    <h2 class="title">イベント名</h2>
-    <h3 class="data">{{ event.name }}</h3>
-    <h2 class="title">開催日</h2>
-    <h3 class="data">初日</h3>
-    <p class="data">{{ event.event_start_date }}</p>
-    <div v-if="date(event)">
-      <h3 class="data">2日目</h3>
-      <p class="data">{{ event.event_2_date }}</p>
-    </div>
-    <div v-if="date2(event)">
-      <h3 class="data">3日目</h3>
-      <p class="data">{{ event.event_3_date }}</p>
-    </div>
-    <div v-if="date3(event)">
-      <h3 class="data">4日目</h3>
-      <p class="data">{{ event.event_4_date }}</p>
-    </div>
-    <div>
-      <h3 class="data">最終日</h3>
-      <p class="data">{{ event.event_last_date }}</p>
-      <div v-for="weather in last_date" :key="weather.id">
-        <p>{{ weather.description }}</p>
-        <img
-          :src="`http://openweathermap.org/img/w/${weather.icon}.png`"
-          alt=""
-        />
+    <div class="flex detail_flex">
+      <img :src="event.image" alt="イベントイメージ画像" class="image" />
+      <div>
+        <h2 class="title">イベント名</h2>
+        <h3 class="event_name">{{ event.name }}</h3>
+        <h2 class="title">開催日</h2>
+        <div class="flex ">
+          <div>
+            <h3>初日</h3>
+            <p>{{ event.event_start_date }}</p>
+            <div v-for="weather in start_date" :key="weather.id">
+              <p>{{ weather.description }}</p>
+              <img
+                :src="`http://openweathermap.org/img/w/${weather.icon}.png`"
+                alt=""
+              />
+            </div>
+          </div>
+          <div v-if="date(event)">
+            <h3>2日目</h3>
+            <p>{{ event.event_2_date }}</p>
+            <div v-for="weather in second_day" :key="weather.id">
+              <p>{{ weather.description }}</p>
+              <img
+                :src="`http://openweathermap.org/img/w/${weather.icon}.png`"
+                alt=""
+              />
+            </div>
+          </div>
+          <div>
+            <div v-if="date2(event)">
+              <h3>3日目</h3>
+              <p>{{ event.event_3_date }}</p>
+              <div v-for="weather in third_day" :key="weather.id">
+                <p>{{ weather.description }}</p>
+                <img
+                  :src="`http://openweathermap.org/img/w/${weather.icon}.png`"
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
+          <div v-if="date3(event)">
+            <h3>4日目</h3>
+            <p>{{ event.event_4_date }}</p>
+            <div v-for="weather in four_date" :key="weather.id">
+              <p>{{ weather.description }}</p>
+              <img
+                :src="`http://openweathermap.org/img/w/${weather.icon}.png`"
+                alt=""
+              />
+            </div>
+          </div>
+          <div>
+            <h3>最終日</h3>
+            <p>{{ event.event_last_date }}</p>
+            <div v-for="weather in last_date" :key="weather.id">
+              <p>{{ weather.description }}</p>
+              <img
+                :src="`http://openweathermap.org/img/w/${weather.icon}.png`"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+        <h2 class="title">アクセス</h2>
+        <p>{{ event.address }}</p>
       </div>
     </div>
-    <h2 class="title">アクセス</h2>
-    <p class="data">{{ event.address }}</p>
     <button class="button" @click="$router.push('/')">戻る</button>
   </div>
 </template>
@@ -43,7 +81,7 @@ export default {
   data() {
     return {
       event: "",
-      first_day: "",
+      start_date: "",
       second_day: "",
       third_day: "",
       four_date: "",
@@ -73,29 +111,20 @@ export default {
                     "day"
                   )
                 ) {
-                  this.first_day = res.data.list[key].weather;
+                  this.start_date = res.data.list[key].weather;
                 } else if (
-                  moment(event_2_date).isSame(
-                    res.data.list[key].dt_txt,
-                    "day"
-                  )
+                  moment(event_2_date).isSame(res.data.list[key].dt_txt, "day")
                 ) {
                   this.second_day = res.data.list[key].weather;
                 } else if (
-                  moment(event_3_date).isSame(
-                    res.data.list[key].dt_txt,
-                    "day"
-                  )
+                  moment(event_3_date).isSame(res.data.list[key].dt_txt, "day")
                 ) {
                   this.third_day = res.data.list[key].weather;
                 } else if (
-                  moment(event_4_date).isSame(
-                    res.data.list[key].dt_txt,
-                    "day"
-                  )
+                  moment(event_4_date).isSame(res.data.list[key].dt_txt, "day")
                 ) {
                   this.four_date = res.data.list[key].weather;
-                } else if(
+                } else if (
                   moment(event_last_date).isSame(
                     res.data.list[key].dt_txt,
                     "day"
@@ -104,9 +133,8 @@ export default {
                   this.last_date = res.data.list[key].weather;
                   console.log(this.last_date);
                 } else {
-                  console.log("no")
+                  console.log("no");
                 }
-
               }
             })
             .catch((err) => {
@@ -146,8 +174,29 @@ export default {
 /* ===============
    イベント詳細
 =============== */
+.detail {
+  width: 60%;
+  margin: 50px auto;
+}
 .image {
-  width: 10%;
+  width: 40%;
+  margin-right: 20px;
+}
+.button {
+  margin: 10px 0 10px 50%;
+  color: #fff;
+  background-color: rgb(194, 104, 194);
+  border: 1px solid rgb(194, 104, 194);
+  padding: 5px 10px;
+  transform: translate(-50%, 0);
+  cursor: pointer;
+}
+.title{
+  font-size: 25px;
+  width: 50%;
+}
+.event_name{
+  font-size: 25px;
 }
 /* =====================
       レスポンシブ
@@ -158,15 +207,6 @@ export default {
   }
   .image {
     width: 100%;
-  }
-  .button {
-    margin: 10px 0 10px 50%;
-    color: #fff;
-    background-color: rgb(194, 104, 194);
-    border: 1px solid rgb(194, 104, 194);
-    padding: 5px 10px;
-    transform: translate(-50%, 0);
-    cursor: pointer;
   }
 }
 </style>

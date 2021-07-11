@@ -73,33 +73,22 @@ export default {
 /* ===============
       メイン
 =============== */
-
-/* =====================
-      レスポンシブ
-====================== */
-@media screen and (max-width: 768px) {
 .main_title {
   position: absolute;
   top: 30px;
   left: 20px;
-  font-size: 35px;
+  font-size: 50px;
   font-family: fantasy;
   color: #fff;
   z-index: 999;
 }
 .main_image {
   width: 100%;
-  height: 150px;
+  height: 280px;
   opacity: 0.8;
 }
 .img {
   border-radius: 50px;
-}
-.icon {
-  width: 15px;
-  height: 15px;
-  color: #ccc;
-  margin-top: 5px;
 }
 .tweet {
   border: 1px solid #c2c2c2;
@@ -115,5 +104,32 @@ export default {
 .tweet_text {
   padding: 5px;
 }
+.icon {
+  width: 15px;
+  height: 15px;
+  color: #ccc;
+  margin-top: 5px;
+}
+/* =====================
+      レスポンシブ
+====================== */
+@media screen and (max-width: 768px) {
+  .main_title {
+    position: absolute;
+    top: 30px;
+    left: 20px;
+    font-size: 35px;
+    font-family: fantasy;
+    color: #fff;
+    z-index: 999;
+  }
+  .main_image {
+    width: 100%;
+    height: 150px;
+    opacity: 0.8;
+  }
+  .img {
+    border-radius: 50px;
+  }
 }
 </style>
