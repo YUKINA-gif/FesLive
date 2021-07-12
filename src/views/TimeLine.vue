@@ -108,14 +108,11 @@ export default {
   font-family: fantasy;
   color: #fff;
   z-index: 10;
-  padding-top: 150px;
+  padding-top: 15%;
   z-index: 999;
 }
 .img {
   border-radius: 50px;
-}
-.tweet {
-  width: 40%;
 }
 .tweet p {
   font-size: 13px;
@@ -153,22 +150,26 @@ export default {
       レスポンシブ
 ====================== */
 @media screen and (max-width: 768px) {
-  .main_title {
-    position: absolute;
-    top: 30px;
-    left: 20px;
-    font-size: 35px;
-    font-family: fantasy;
-    color: #fff;
-    z-index: 999;
-  }
-  .main_image {
+  .main{
     width: 100%;
-    height: 150px;
-    opacity: 0.8;
   }
-  .img {
-    border-radius: 50px;
+  .contents,.events{
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .main_title{
+    font-size: 60px;
+  }
+  .main_image{
+    height: 200px;
+  }
+  .event_image{
+    width: 80px;
+    height: 80px;
+  }
+  .tweet{
+    width: 90%;
   }
 }
 </style>
