@@ -1,32 +1,53 @@
 <template>
-  <div class="time_line">
+  <div class="main">
     <!-- メインイメージ -->
-    <h1 class="main_title">FesLive</h1>
-    <img :src="image" alt="メインイメージ" class="image main_image" />
-    <!-- イベントスワイプ -->
-    <div class="title">
-      <h2>イベント一覧</h2>
+    <div class="main_image">
+      <h1 class="main_title">-FesLive-</h1>
     </div>
-    <Swipe :events="events" />
-    <div class="title">
-      <h2>ツイート一覧</h2>
-    </div>
-    <div v-for="tweet in tweets" :key="tweet.id" class="flex tweet">
+    <div class="flex contents">
       <div>
-        <img :src="tweet.image" alt="アイコン" class="img" />
+        <div class="title">
+          <h2>Event</h2>
+        </div>
+        <div class="flex events">
+          <div v-for="event in events" :key="event.id" class="flex">
+            <div class="event_image">
+              <img
+                :src="event.image"
+                alt="イベント画像"
+                class="image swipe_image"
+                @click="
+                  $router.push({
+                    path: '/event/' + event.id,
+                    params: { id: event.id },
+                  })
+                "
+              />
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="tweet_text">
-        <h3>{{ tweet.name }}</h3>
-        <p>{{ tweet.text }}</p>
-        <font-awesome-icon icon="tags" class="icon" />
-        <a :href="tweet.url">ホームページ</a>
+      <div class="tweet">
+        <div class="title">
+          <h2>Tweet</h2>
+        </div>
+        <div v-for="tweet in tweets" :key="tweet.id" class="flex ">
+          <div>
+            <img :src="tweet.image" alt="アイコン" class="img" />
+          </div>
+          <div class="tweet_text">
+            <h3>{{ tweet.name }}</h3>
+            <p>{{ tweet.text }}</p>
+            <font-awesome-icon icon="tags" class="icon" />
+            <a :href="tweet.url">ホームページ</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Swipe from "../components/Swipe.vue";
 import axios from "axios";
 export default {
   data() {
@@ -36,9 +57,6 @@ export default {
       tweets: [],
       events: [],
     };
-  },
-  components: {
-    Swipe,
   },
   methods: {
     async getTweets() {
@@ -73,32 +91,31 @@ export default {
 /* ===============
       メイン
 =============== */
-.main_title {
-  position: absolute;
-  top: 30px;
-  left: 20px;
-  font-size: 35px;
-  font-family: fantasy;
-  color: #fff;
-  z-index: 999;
+.main {
+  width: 80%;
+  margin: 0 auto;
 }
 .main_image {
   width: 100%;
-  height: 150px;
-  opacity: 0.8;
+  height: 540px;
+  background: url("https://albumshare.s3.ap-northeast-3.amazonaws.com/fesimage.jpg")
+    no-repeat;
+  background-size: cover;
+  text-align: center;
+}
+.main_title {
+  font-size: 180px;
+  font-family: fantasy;
+  color: #fff;
+  z-index: 10;
+  padding-top: 150px;
+  z-index: 999;
 }
 .img {
   border-radius: 50px;
 }
-.icon {
-  width: 15px;
-  height: 15px;
-  color: #ccc;
-  margin-top: 5px;
-}
 .tweet {
-  border: 1px solid #c2c2c2;
-  padding: 10px;
+  width: 40%;
 }
 .tweet p {
   font-size: 13px;
@@ -109,5 +126,49 @@ export default {
 }
 .tweet_text {
   padding: 5px;
+}
+.icon {
+  width: 15px;
+  height: 15px;
+  color: #ccc;
+  margin-top: 5px;
+}
+.events{
+  flex-wrap: wrap;
+}
+.event_image {
+  width: 200px;
+  height: 200px;
+  flex-wrap: wrap;
+  cursor: pointer;
+}
+.contents {
+  margin-top: 10px;
+  justify-content: space-between;
+}
+.title h2{
+  font-size: 25px;
+}
+/* =====================
+      レスポンシブ
+====================== */
+@media screen and (max-width: 768px) {
+  .main_title {
+    position: absolute;
+    top: 30px;
+    left: 20px;
+    font-size: 35px;
+    font-family: fantasy;
+    color: #fff;
+    z-index: 999;
+  }
+  .main_image {
+    width: 100%;
+    height: 150px;
+    opacity: 0.8;
+  }
+  .img {
+    border-radius: 50px;
+  }
 }
 </style>
