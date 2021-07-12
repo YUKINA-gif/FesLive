@@ -23,64 +23,57 @@
             <th>初日</th>
             <td>{{ event.event_start_date | moment }}</td>
             <td v-for="weather in start_date" :key="weather.id" class="flex">
-              <p v-if="first_weather">{{ weather.description }}</p>
-              <img v-if="first_weather"
+              <img
                 :src="`http://openweathermap.org/img/w/${weather.icon}.png`"
                 alt=""
               />
-              <p v-else>なし</p>
+              <p class="weather_name">{{ weather.description }}</p>
             </td>
           </tr>
           <tr v-if="date(event)">
             <th>2日目</th>
             <td>{{ event.event_2_date | moment }}</td>
-            <td v-for="weather in second_day" :key="weather.id" class="flex">
-              <p v-if="second_weather">{{ weather.description }}</p>
+            <td v-for="weather in second_day" :key="weather.id">
+              <p>{{ weather.description }}</p>
               <img
-                v-if="second_weather"
                 :src="`http://openweathermap.org/img/w/${weather.icon}.png`"
                 alt=""
               />
-              <p v-else>なし</p>
             </td>
           </tr>
           <tr v-if="date2(event)">
             <th>3日目</th>
             <td>{{ event.event_3_date | moment }}</td>
-            <td v-for="weather in third_day" :key="weather.id" class="flex">
-              <p v-if="third_weather">{{ weather.description }}</p>
+            <td v-for="weather in third_day" :key="weather.id" class="weather">
+              <p>{{ weather.description }}</p>
               <img
-                v-if="third_weather"
                 :src="`http://openweathermap.org/img/w/${weather.icon}.png`"
-                alt=""
+                alt="天気アイコン"
+                class="weather_icon"
               />
-              <p v-else>なし</p>
             </td>
           </tr>
           <tr v-if="date3(event)">
             <th>4日目</th>
             <td>{{ event.event_4_date | moment }}</td>
-            <td v-for="weather in four_date" :key="weather.id" class="flex">
-              <p v-if="four_weather">{{ weather.description }}</p>
+            <td v-for="weather in four_date" :key="weather.id">
+              <p>{{ weather.description }}</p>
               <img
-                v-if="four_weather"
                 :src="`http://openweathermap.org/img/w/${weather.icon}.png`"
                 alt=""
               />
-              <p v-else>なし</p>
             </td>
           </tr>
           <tr>
             <th>最終日</th>
             <td>{{ event.event_last_date | moment }}</td>
-            <td v-for="weather in last_date" :key="weather.id" class="flex">
+            <td v-for="weather in last_date" :key="weather.id">
               <p v-if="last_weather">{{ weather.description }}</p>
               <img
                 v-if="last_weather"
                 :src="`http://openweathermap.org/img/w/${weather.icon}.png`"
                 alt=""
               />
-              <p v-else>なし</p>
             </td>
           </tr>
         </table>
@@ -105,8 +98,6 @@ export default {
       third_day: "",
       four_date: "",
       last_date: "",
-      third_weather: false,
-      last_weather: false,
     };
   },
   filters: {
@@ -125,9 +116,10 @@ export default {
           const event_3_date = res.data.event.event_3_date;
           const event_4_date = res.data.event.event_4_date;
           const event_last_date = res.data.event.event_last_date;
+          const city = res.data.event.city_name;
           axios
             .get(
-              `https://api.openweathermap.org/data/2.5/forecast?q=osaka&lang=ja&appid=6fa6f833ba14983210ed688d623a26d4`
+              `https://api.openweathermap.org/data/2.5/forecast?q=${city}&lang=ja&appid=6fa6f833ba14983210ed688d623a26d4`
             )
             .then((res) => {
               for (var key in res.data.list) {
@@ -158,8 +150,6 @@ export default {
                 ) {
                   this.last_date = res.data.list[key].weather;
                   console.log(this.last_date);
-                } else {
-                  console.log("no");
                 }
               }
             })
@@ -235,16 +225,12 @@ table {
 tr {
   border-bottom: 1px solid #c2c2c2;
 }
-th {
-  width: 20%;
-  padding: 15px 5px;
-}
-td {
-  width: 40%;
-  padding: 15px 5px;
+th,td{
+  padding: 10px;
+  vertical-align: middle;
 }
 .data {
-  width: 90%;
+  width: 100%;
   margin: 20px 0 0 20px;
 }
 .title {
@@ -263,15 +249,28 @@ td {
 .detail_flex {
   width: 80%;
 }
+.weather{
+  margin: 0 auto;
+}
+.weather_name{
+  margin-top: 15px;
+}
 /* =====================
       レスポンシブ
 ====================== */
 @media screen and (max-width: 768px) {
-  .data {
-    padding: 0 20px;
+  .detail {
+    width: 90%;
+    margin: 0 auto;
   }
-  .image {
+  .flex{
+    flex-wrap: wrap;
+  }
+  .detail_flex{
     width: 100%;
+  }
+  .data{
+    margin: 50px 0 0 0;
   }
 }
 </style>
