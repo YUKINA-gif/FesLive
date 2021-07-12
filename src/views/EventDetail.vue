@@ -6,8 +6,8 @@
         <h2 class="title">イベント名</h2>
         <h3 class="event_name">{{ event.name }}</h3>
         <h2 class="title">開催日</h2>
-        <div class="flex ">
-          <div>
+        <div class="flex">
+          <div class="box">
             <h3>初日</h3>
             <p>{{ event.event_start_date }}</p>
             <div v-for="weather in start_date" :key="weather.id">
@@ -65,6 +65,8 @@
             </div>
           </div>
         </div>
+        <p>天気情報</p>
+        <p>開催5日前から表示されます</p>
         <h2 class="title">アクセス</h2>
         <p>{{ event.address }}</p>
       </div>
@@ -175,7 +177,7 @@ export default {
    イベント詳細
 =============== */
 .detail {
-  width: 60%;
+  width: 70%;
   margin: 50px auto;
 }
 .image {
@@ -191,12 +193,16 @@ export default {
   transform: translate(-50%, 0);
   cursor: pointer;
 }
-.title{
+.title {
   font-size: 25px;
   width: 50%;
 }
-.event_name{
+.event_name {
   font-size: 25px;
+}
+.box{
+  border: 1px solid #c2c2c2;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.4);
 }
 /* =====================
       レスポンシブ
