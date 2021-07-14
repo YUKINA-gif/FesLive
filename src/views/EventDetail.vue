@@ -1,6 +1,5 @@
 <template>
-  <div class="detail">
-    <div class="flex">
+  <div class="detail flex">
       <div class="detail_flex">
         <font-awesome-icon
           icon="arrow-left"
@@ -81,7 +80,6 @@
         <h2 class="title">アクセス</h2>
         <p>{{ event.address }}</p>
       </div>
-    </div>
   </div>
 </template>
 
@@ -191,21 +189,19 @@ export default {
    イベント詳細
 =============== */
 .detail {
-  width: 80%;
+  width: 100%;
   margin: 50px auto;
+  justify-content: center;
+}
+.data{
+  margin: 20px 0 0 20px;
+}
+.detail_flex{
+  margin-right: 20px;
 }
 .image {
   width: 100%;
-  margin-right: 20px;
-}
-.button {
-  margin: 10px 0 10px 50%;
-  color: #fff;
-  background-color: rgb(194, 104, 194);
-  border: 1px solid rgb(194, 104, 194);
-  padding: 5px 10px;
-  transform: translate(-50%, 0);
-  cursor: pointer;
+  height: 480px;
 }
 .title {
   font-size: 25px;
@@ -213,11 +209,6 @@ export default {
 }
 .event_name {
   font-size: 25px;
-}
-.box {
-  border: 1px solid #c2c2c2;
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.4);
-  padding: 10px;
 }
 table {
   text-align: left;
@@ -228,10 +219,6 @@ tr {
 th,td{
   padding: 10px;
   vertical-align: middle;
-}
-.data {
-  width: 100%;
-  margin: 20px 0 0 20px;
 }
 .title {
   margin: 20px 0;
@@ -245,9 +232,6 @@ th,td{
   height: 30px;
   padding: 3px 10px;
   color: #c2c2c2;
-}
-.detail_flex {
-  width: 80%;
 }
 .weather{
   margin: 0 auto;
@@ -263,11 +247,15 @@ th,td{
     width: 90%;
     margin: 0 auto;
   }
+  .image{
+    height: auto;
+  }
   .flex{
     flex-wrap: wrap;
   }
   .detail_flex{
     width: 100%;
+    margin: 0 auto;
   }
   .data{
     margin: 50px 0 0 0;

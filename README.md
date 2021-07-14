@@ -8,8 +8,8 @@
 - Vue.js 4.5.13
 
 ## ページ一覧
-<img src="./src/assets/feslive_image.png">
-<img src="./src/assets/feslive_image2.png">
+<img src="./src/assets/feslive-top.png">
+<img src="./src/assets/feslive_image (2).png">
 
 ## 各ページ機能・詳細
 [イベント一覧](#list)
