@@ -6,15 +6,22 @@
 
 <script>
 import Vue from "vue";
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
+import 'bootstrap-vue/dist/bootstrap-vue.css'; 
+import 'bootstrap/dist/css/bootstrap.css';
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 library.add(fas);
+Vue.use(BootstrapVue,IconsPlugin)
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 export default {
   data() {
     return {};
   },
+  components:{
+    
+  }
 };
 </script>
 
