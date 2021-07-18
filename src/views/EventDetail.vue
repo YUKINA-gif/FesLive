@@ -67,9 +67,8 @@
             <th>最終日</th>
             <td>{{ event.event_last_date | moment }}</td>
             <td v-for="weather in last_date" :key="weather.id">
-              <p v-if="last_weather">{{ weather.description }}</p>
+              <p>{{ weather.description }}</p>
               <img
-                v-if="last_weather"
                 :src="`http://openweathermap.org/img/w/${weather.icon}.png`"
                 alt=""
               />
@@ -147,13 +146,9 @@ export default {
                   )
                 ) {
                   this.last_date = res.data.list[key].weather;
-                  console.log(this.last_date);
                 }
               }
             })
-            .catch((err) => {
-              console.log(err);
-            });
         });
     },
     date(event) {

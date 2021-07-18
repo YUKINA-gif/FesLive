@@ -105,7 +105,7 @@ export default {
 }
 .main_title {
   font-size: 180px;
-  font-family: fantasy;
+  font-family: fantasy,sans-serif;
   color: #fff;
   z-index: 10;
   padding-top: 15%;
