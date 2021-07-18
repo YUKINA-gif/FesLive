@@ -27,48 +27,25 @@
           </div>
         </div>
       </div>
-      <div class="tweet">
-        <div class="title">
-          <h2>Tweet</h2>
-        </div>
-        <div v-for="tweet in tweets" :key="tweet.id" class="flex ">
-          <div>
-            <img :src="tweet.image" alt="アイコン" class="img" />
-          </div>
-          <div class="tweet_text">
-            <h3>{{ tweet.name }}</h3>
-            <p>{{ tweet.text }}</p>
-            <font-awesome-icon icon="tags" class="icon" />
-            <a :href="tweet.url">ホームページ</a>
-          </div>
-        </div>
-      </div>
+     <Tweet />
     </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import Tweet from '../components/TimeLine.vue';
 export default {
   data() {
     return {
       image: require("../assets/fesimage.jpg"),
-      tweet_id: "9hp_be",
-      tweets: [],
       events: [],
     };
   },
+  components:{
+    Tweet
+  },
   methods: {
-    async getTweets() {
-      await axios
-        .get("https://feslive.herokuapp.com/api/tweet")
-        .then((res) => {
-          this.tweets = res.data.tweet;
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
     async getEvents() {
       await axios
         .get("https://feslive.herokuapp.com/api/event")
@@ -81,7 +58,6 @@ export default {
     },
   },
   created() {
-    this.getTweets();
     this.getEvents();
   },
 };
@@ -110,25 +86,6 @@ export default {
   z-index: 10;
   padding-top: 15%;
   z-index: 999;
-}
-.img {
-  border-radius: 50px;
-}
-.tweet p {
-  font-size: 13px;
-  line-height: 1.3;
-}
-.tweet h3 {
-  margin-bottom: 5px;
-}
-.tweet_text {
-  padding: 5px;
-}
-.icon {
-  width: 15px;
-  height: 15px;
-  color: #ccc;
-  margin-top: 5px;
 }
 .events{
   flex-wrap: wrap;
