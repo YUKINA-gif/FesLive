@@ -14,6 +14,7 @@
         <a :href="tweet.url">ホームページ</a>
       </div>
     </div>
+    <!-- ページネーション機能 -->
     <paginate
       :page-count="getPageCount"
       :page-range="3"

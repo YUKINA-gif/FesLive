@@ -1,84 +1,83 @@
 <template>
   <div class="detail flex">
-      <div class="detail_flex">
-        <font-awesome-icon
-          icon="arrow-left"
-          class="icon"
-          @click="$router.push('/')"
-        />
-        <img :src="event.image" alt="イベントイメージ画像" class="image" />
-      </div>
-      <div class="data">
-        <h2 class="title">イベント名</h2>
-        <h3 class="event_name">{{ event.name }}</h3>
-        <h2 class="title">開催日</h2>
-        <table>
-          <tr>
-            <th></th>
-            <th>開催日</th>
-            <th>天気情報<br />(5日前から表示)</th>
-          </tr>
-          <tr>
-            <th>初日</th>
-            <td>{{ event.event_start_date | moment }}</td>
-            <td v-for="weather in start_date" :key="weather.id" class="flex">
-              <img
-                :src="`http://openweathermap.org/img/w/${weather.icon}.png`"
-                alt=""
-              />
-              <p class="weather_name">{{ weather.description }}</p>
-            </td>
-          </tr>
-          <tr v-if="date(event)">
-            <th>2日目</th>
-            <td>{{ event.event_2_date | moment }}</td>
-            <td v-for="weather in second_day" :key="weather.id">
-              <p>{{ weather.description }}</p>
-              <img
-                :src="`http://openweathermap.org/img/w/${weather.icon}.png`"
-                alt=""
-              />
-            </td>
-          </tr>
-          <tr v-if="date2(event)">
-            <th>3日目</th>
-            <td>{{ event.event_3_date | moment }}</td>
-            <td v-for="weather in third_day" :key="weather.id" class="weather">
-              <p>{{ weather.description }}</p>
-              <img
-                :src="`http://openweathermap.org/img/w/${weather.icon}.png`"
-                alt="天気アイコン"
-                class="weather_icon"
-              />
-            </td>
-          </tr>
-          <tr v-if="date3(event)">
-            <th>4日目</th>
-            <td>{{ event.event_4_date | moment }}</td>
-            <td v-for="weather in four_date" :key="weather.id">
-              <p>{{ weather.description }}</p>
-              <img
-                :src="`http://openweathermap.org/img/w/${weather.icon}.png`"
-                alt=""
-              />
-            </td>
-          </tr>
-          <tr>
-            <th>最終日</th>
-            <td>{{ event.event_last_date | moment }}</td>
-            <td v-for="weather in last_date" :key="weather.id">
-              <p>{{ weather.description }}</p>
-              <img
-                :src="`http://openweathermap.org/img/w/${weather.icon}.png`"
-                alt=""
-              />
-            </td>
-          </tr>
-        </table>
+    <div class="detail_flex">
+      <font-awesome-icon
+        icon="arrow-left"
+        class="icon"
+        @click="$router.push('/')"
+      />
+      <img :src="event.image" alt="イベントイメージ画像" class="image" />
+    </div>
+    <div class="data">
+      <h2 class="title">イベント名</h2>
+      <h3 class="event_name">{{ event.name }}</h3>
+      <h2 class="title">開催日</h2>
+      <table>
+        <tr>
+          <th></th>
+          <th>開催日</th>
+          <th>天気情報<br />(5日前から表示)</th>
+        </tr>
+        <tr>
+          <th>初日</th>
+          <td>{{ event.event_start_date | moment }}</td>
+          <td v-for="weather in start_date" :key="weather.id" class="flex">
+            <img
+              :src="`http://openweathermap.org/img/w/${weather.icon}.png`"
+              alt="天気アイコン"
+            />
+            <p class="weather_name">{{ weather.description }}</p>
+          </td>
+        </tr>
+        <tr v-if="date(event)">
+          <th>2日目</th>
+          <td>{{ event.event_2_date | moment }}</td>
+          <td v-for="weather in second_day" :key="weather.id" class="flex">
+            <img
+              :src="`http://openweathermap.org/img/w/${weather.icon}.png`"
+              alt="天気アイコン"
+            />
+            <p class="weather_name">{{ weather.description }}</p>
+          </td>
+        </tr>
+        <tr v-if="date2(event)">
+          <th>3日目</th>
+          <td>{{ event.event_3_date | moment }}</td>
+          <td v-for="weather in third_day" :key="weather.id" class="flex">
+            <img
+              :src="`http://openweathermap.org/img/w/${weather.icon}.png`"
+              alt="天気アイコン"
+            />
+            <p class="weather_name">{{ weather.description }}</p>
+          </td>
+        </tr>
+        <tr v-if="date3(event)">
+          <th>4日目</th>
+          <td>{{ event.event_4_date | moment }}</td>
+          <td v-for="weather in four_date" :key="weather.id" class="flex">
+            <img
+              :src="`http://openweathermap.org/img/w/${weather.icon}.png`"
+              alt="天気アイコン"
+            />
+            <p class="weather_name">{{ weather.description }}</p>
+          </td>
+        </tr>
+        <tr>
+          <th>最終日</th>
+          <td>{{ event.event_last_date | moment }}</td>
+          <td v-for="weather in last_date" :key="weather.id" class="flex">
+            <img
+              :src="`http://openweathermap.org/img/w/${weather.icon}.png`"
+              alt=""
+            />
+            <p class="weather_name">{{ weather.description }}</p>
+          </td>
+        </tr>
+      </table>
 
-        <h2 class="title">アクセス</h2>
-        <p>{{ event.address }}</p>
-      </div>
+      <h2 class="title">アクセス</h2>
+      <p>{{ event.address }}</p>
+    </div>
   </div>
 </template>
 
@@ -148,7 +147,7 @@ export default {
                   this.last_date = res.data.list[key].weather;
                 }
               }
-            })
+            });
         });
     },
     date(event) {
@@ -188,10 +187,10 @@ export default {
   margin: 50px auto;
   justify-content: center;
 }
-.data{
+.data {
   margin: 20px 0 0 20px;
 }
-.detail_flex{
+.detail_flex {
   margin-right: 20px;
 }
 .image {
@@ -211,7 +210,8 @@ table {
 tr {
   border-bottom: 1px solid #c2c2c2;
 }
-th,td{
+th,
+td {
   padding: 10px;
   vertical-align: middle;
 }
@@ -228,10 +228,7 @@ th,td{
   padding: 3px 10px;
   color: #c2c2c2;
 }
-.weather{
-  margin: 0 auto;
-}
-.weather_name{
+.weather_name {
   margin-top: 15px;
 }
 /* =====================
@@ -242,17 +239,17 @@ th,td{
     width: 90%;
     margin: 0 auto;
   }
-  .image{
+  .image {
     height: auto;
   }
-  .flex{
+  .flex {
     flex-wrap: wrap;
   }
-  .detail_flex{
+  .detail_flex {
     width: 100%;
     margin: 0 auto;
   }
-  .data{
+  .data {
     margin: 50px 0 0 0;
   }
 }

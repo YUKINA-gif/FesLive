@@ -27,14 +27,14 @@
           </div>
         </div>
       </div>
-     <Tweet />
+      <Tweet />
     </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
-import Tweet from '../components/TimeLine.vue';
+import Tweet from "../components/TimeLine.vue";
 export default {
   data() {
     return {
@@ -42,8 +42,8 @@ export default {
       events: [],
     };
   },
-  components:{
-    Tweet
+  components: {
+    Tweet,
   },
   methods: {
     async getEvents() {
@@ -81,13 +81,13 @@ export default {
 }
 .main_title {
   font-size: 180px;
-  font-family: fantasy,sans-serif;
+  font-family: fantasy, sans-serif;
   color: #fff;
   z-index: 10;
   padding-top: 15%;
   z-index: 999;
 }
-.events{
+.events {
   flex-wrap: wrap;
 }
 .event_image {
@@ -100,32 +100,33 @@ export default {
   margin-top: 10px;
   justify-content: space-between;
 }
-.title h2{
+.title h2 {
   font-size: 25px;
 }
 /* =====================
       レスポンシブ
 ====================== */
 @media screen and (max-width: 768px) {
-  .main{
+  .main {
     width: 100%;
   }
-  .contents,.events{
+  .contents,
+  .events {
     width: 100%;
     flex-wrap: wrap;
     justify-content: center;
   }
-  .main_title{
+  .main_title {
     font-size: 60px;
   }
-  .main_image{
+  .main_image {
     height: 200px;
   }
-  .event_image{
+  .event_image {
     width: 80px;
     height: 80px;
   }
-  .tweet{
+  .tweet {
     width: 90%;
   }
 }
