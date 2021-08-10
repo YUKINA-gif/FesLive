@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import TimeLine from "../views/TimeLine.vue";
+import Main from "../views/Main.vue";
 import EventDetail from "../views/EventDetail.vue";
 
 Vue.use(VueRouter);
@@ -8,8 +8,8 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    name: "TimeLine",
-    component: TimeLine,
+    name: "Main",
+    component: Main,
   },
   {
     path: "/event/:id",
